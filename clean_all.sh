@@ -7,7 +7,7 @@ for p in $(cat projects.conf); do
    echo
    echo Clean unit and Android tests environemnts in $p
    echo "====================================================================="
-   echo "Cleaning $p"
+   
    pushd $p > /dev/null  # Silent pushd
    ./gradlew $@ clean | sed "s@^@$p @"  # Prefix every line with directory
    code=${PIPESTATUS[0]}
