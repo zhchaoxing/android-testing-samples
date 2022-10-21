@@ -32,7 +32,7 @@ try {
 				*/				
 				sh "pwd"
                 sh 'ls -al'
-                sh './clean_all.sh'
+                sh 'clean_all.sh'
         }
         /*
         stage('Build release ') {
