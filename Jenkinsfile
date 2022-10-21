@@ -5,7 +5,7 @@ try {
       
         stage('Preparation') { 
             //From other ppl git credentialsId: 'fef4159e-285b-45d9-80ca-5981c4576ba5', url: 'https://github.com/prashant-bhatasana/demoApp/'
-			git branch: '$BRANCH_NAME', credentialsId: 'jenkins-hal-testGitHub', url: 'https://github.com/zhchaoxing/testing-samples.git'
+			git branch: '$BRANCH_NAME', credentialsId: 'jenkins-hal-testGitHub', url: 'https://github.com/zhchaoxing/android-testing-samples.git'
         }
       
         stage('Dependencies') {
