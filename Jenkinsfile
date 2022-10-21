@@ -26,7 +26,7 @@ try {
                 dir("android") {
                     sh "pwd"
                     sh 'ls -al'
-                    sh './gradlew clean'
+                    sh './clean_all.sh'
                 }   
         }
         /*
