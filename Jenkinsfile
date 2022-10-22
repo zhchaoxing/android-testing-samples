@@ -61,23 +61,34 @@ node {
 			//sh 'integration/ServiceTestRuleSample ./gradlew integration/ServiceTestRuleSample testDebug connectedAndroidTest'
 			//sh 'runner/AndroidJunitRunnerSample ./gradlew runner/AndroidJunitRunnerSample testDebug connectedAndroidTest'
 			//sh 'runner/AndroidTestOrchestratorSample ./gradlew runner/AndroidTestOrchestratorSample testDebug connectedAndroidTest'
-			dir("integration/ServiceTestRuleSample") {
-         		sh './gradlew integration/ServiceTestRuleSample testDebug connectedAndroidTest'
-			}
-			dir("runner") {
-				dir("AndroidJunitRunnerSample") {
-					sh './gradlew runner/AndroidJunitRunnerSample testDebug connectedAndroidTest'
-				}
-				dir("AndroidTestOrchestratorSample") {
-					sh './gradlew runner/AndroidTestOrchestratorSample testDebug connectedAndroidTest'
-				}
+			
+			
+			
+			sh 'ANDROID_SERIAL=emulator-5556' 
+			//# wait for emulator to be up and fully booted, unlock screen
+			   sh'$ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'
+				
 
+			
+			withGradle {
+				dir("integration/ServiceTestRuleSample") {
+					sh './gradlew testDebug connectedAndroidTest'
+				}
+				dir("runner") {
+					dir("AndroidJunitRunnerSample") {
+						sh './gradlew testDebug connectedAndroidTest'
+					}
+					dir("AndroidTestOrchestratorSample") {
+						sh './gradlew testDebug connectedAndroidTest'
+					}
+
+				}
 			}
         }
 		
 		stage('test unsigned release ') {
 			dir("ui/espresso/AccessibilitySample") {
-				sh './gradlew ui/espresso/AccessibilitySample testDebug connectedAndroidTest'
+				sh './gradlew testDebug connectedAndroidTest'
 			}
 		}
 		
