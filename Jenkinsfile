@@ -65,10 +65,10 @@ node {
          		sh './gradlew integration/ServiceTestRuleSample testDebug connectedAndroidTest'
 			}
 			dir("runner") {
-				dir("AndroidJunitRunnerSample) {
+				dir("AndroidJunitRunnerSample") {
 					sh './gradlew runner/AndroidJunitRunnerSample testDebug connectedAndroidTest'
 				}
-				dir("AndroidTestOrchestratorSample) {
+				dir("AndroidTestOrchestratorSample") {
 					sh './gradlew runner/AndroidTestOrchestratorSample testDebug connectedAndroidTest'
 				}
 
