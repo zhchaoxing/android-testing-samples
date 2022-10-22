@@ -22,16 +22,18 @@ node {
 				sh 'echo JRE_HOME: $JRE_HOME'
 				sh 'echo JAVA_HOME：$JAVA_HOME'
         }
-        /*
+		/*
         stage('Clean Build') {
-                /*
-				dir("android") {
+                dir("android") {
                     sh "pwd"
                     sh 'ls -al'
                     sh './clean_all.sh'
-                } 
-				*/				
-				sh "pwd"
+                }
+        }
+		*/
+        /*
+        stage('Clean Build') {
+                sh "pwd"
                 sh 'ls -al'
 				sh 'chmod +x ./clean_all.sh'
                 sh './clean_all.sh'
