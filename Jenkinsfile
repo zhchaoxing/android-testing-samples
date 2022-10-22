@@ -23,6 +23,7 @@ node {
 				sh 'echo JAVA_HOME：$JAVA_HOME'
         }
 		
+		
 		stage('Prep Android') {
 			sh 'chmod +x ./prep_android_device.sh'
 			sh './prep_android_device.sh'
