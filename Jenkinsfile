@@ -22,6 +22,13 @@ node {
 				sh 'echo JRE_HOME: $JRE_HOME'
 				sh 'echo JAVA_HOME：$JAVA_HOME'
         }
+		
+		stage('Prep Android') {
+			sh 'chmod +x ./prep_android_device.sh'
+			sh './prep_android_device.sh'
+		}
+		
+		
 		/*
         stage('Clean Build') {
                 dir("android") {
@@ -67,12 +74,6 @@ node {
 			
 			
 			
-			sh 'ANDROID_SERIAL=emulator-5556' 
-			//# wait for emulator to be up and fully booted, unlock screen
-			sh '$ANDROID_HOME/platform-tools/adb wait-for-device shell \\'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82\\''
-				
-
-			
 			withGradle {
 				dir("integration/ServiceTestRuleSample") {
 					sh './gradlew testDebug connectedAndroidTest'
@@ -90,9 +91,6 @@ node {
         }
 		
 		stage('test unsigned release ') {
-			sh 'ANDROID_SERIAL=emulator-5556' 
-			//# wait for emulator to be up and fully booted, unlock screen
-			sh '$ANDROID_HOME/platform-tools/adb wait-for-device shell \\'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82\\''
 			dir("ui/espresso/AccessibilitySample") {
 				sh './gradlew testDebug connectedAndroidTest'
 			}
