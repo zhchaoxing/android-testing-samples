@@ -58,14 +58,14 @@ node {
             }
 			*/
 			// sh './test_all.sh'
-			sh './gradlew integration/ServiceTestRuleSample testDebug connectedAndroidTest'
-			sh './gradlew runner/AndroidJunitRunnerSample testDebug connectedAndroidTest'
-			sh './gradlew runner/AndroidTestOrchestratorSample testDebug connectedAndroidTest'
+			sh 'integration/ServiceTestRuleSample ./gradlew integration/ServiceTestRuleSample testDebug connectedAndroidTest'
+			sh 'runner/AndroidJunitRunnerSample ./gradlew runner/AndroidJunitRunnerSample testDebug connectedAndroidTest'
+			sh 'runner/AndroidTestOrchestratorSample ./gradlew runner/AndroidTestOrchestratorSample testDebug connectedAndroidTest'
 
         }
 		
 		stage('test unsigned release ') {
-			sh './gradlew ui/espresso/AccessibilitySample testDebug connectedAndroidTest'
+			sh 'ui/espresso/AccessibilitySample ./gradlew ui/espresso/AccessibilitySample testDebug connectedAndroidTest'
 		}
 		
         stage('Compile') {
