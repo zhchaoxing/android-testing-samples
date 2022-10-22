@@ -58,14 +58,14 @@ node {
             }
 			*/
 			// sh './test_all.sh'
-			./gradlew integration/ServiceTestRuleSample testDebug connectedAndroidTest
-			./gradlew runner/AndroidJunitRunnerSample testDebug connectedAndroidTest
-			./gradlew runner/AndroidTestOrchestratorSample testDebug connectedAndroidTest
+			sh './gradlew integration/ServiceTestRuleSample testDebug connectedAndroidTest'
+			sh './gradlew runner/AndroidJunitRunnerSample testDebug connectedAndroidTest'
+			sh './gradlew runner/AndroidTestOrchestratorSample testDebug connectedAndroidTest'
 
         }
 		
 		stage('test unsigned release ') {
-			./gradlew ui/espresso/AccessibilitySample testDebug connectedAndroidTest
+			sh './gradlew ui/espresso/AccessibilitySample testDebug connectedAndroidTest'
 		}
 		
         stage('Compile') {
