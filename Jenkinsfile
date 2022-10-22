@@ -1,7 +1,8 @@
-def err = null
-try {
-    agent {label "linux"}
-    node {
+agent {label "linux"}
+node {
+
+	def err = null
+	try {
       
         stage('Preparation') { 
             //From other ppl git credentialsId: 'fef4159e-285b-45d9-80ca-5981c4576ba5', url: 'https://github.com/prashant-bhatasana/demoApp/'
@@ -56,25 +57,33 @@ try {
                 sh './test_all.sh'
             }
 			*/
-			sh './test_all.sh'
+			// sh './test_all.sh'
+			./gradlew integration/ServiceTestRuleSample testDebug connectedAndroidTest
+			./gradlew runner/AndroidJunitRunnerSample testDebug connectedAndroidTest
+			./gradlew runner/AndroidTestOrchestratorSample testDebug connectedAndroidTest
+
         }
+		
+		stage('test unsigned release ') {
+			./gradlew ui/espresso/AccessibilitySample testDebug connectedAndroidTest
+		}
 		
         stage('Compile') {
             archiveArtifacts artifacts: '**/*.apk', fingerprint: true, onlyIfSuccessful: true            
         }
-    }
-  
-} catch (caughtError) { 
-    
-    err = caughtError
-    currentBuild.result = "FAILURE"
+	} catch (caughtError) { 
+		
+		err = caughtError
+		currentBuild.result = "FAILURE"
 
-} finally {
-    
-    if(currentBuild.result == "FAILURE"){
-              sh "echo 'Build FAILURE'"
-    }else{
-         sh "echo 'Build SUCCESSFUL'"
-    }
-   
+	} finally {
+		
+		if(currentBuild.result == "FAILURE"){
+				  sh "echo 'Build FAILURE'"
+		}else{
+			 sh "echo 'Build SUCCESSFUL'"
+		}
+	   
+	}
 }
+  
