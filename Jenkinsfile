@@ -100,9 +100,9 @@ node {
 			}
 		}
 		
-        stage('Compile') {
-            archiveArtifacts artifacts: '**/*.apk', fingerprint: true, onlyIfSuccessful: true            
-        }
+        //stage('Compile') {
+        //    archiveArtifacts artifacts: '**/*.apk', fingerprint: true, onlyIfSuccessful: true            
+        //}
 	} catch (caughtError) { 
 		
 		err = caughtError
