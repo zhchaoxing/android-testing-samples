@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # emulator -avd Android25 -wipe-data -no-snapshot &
-~/android_sdk/emulator/emulator -avd Android33 -noaudio -no-window -accel on -ports 5558,5559
+~/android_sdk/emulator/emulator -avd Android33 -noaudio -no-window -accel on -ports 5558,5559 &
 
 ANDROID_SERIAL=emulator-5558
 
