@@ -1,4 +1,4 @@
-agent {label "linux"}
+agent {label "linux && android"}
 node {
 
 	def err = null
