@@ -18,8 +18,8 @@ node {
                 sh 'export JRE_HOME=/opt/jdk1.8.0_201/jre'
                 sh 'export PATH=$PATH:/opt/jdk1.8.0_201/bin:/opt/jdk1.8.0_201/jre/bin'
         */
-				sh 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64'
-                sh 'export JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre'
+				sh 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64'
+                sh 'export JRE_HOME=/usr/lib/jvm/java-11-openjdk-amd64/jre'
                 //sh 'export PATH=$PATH:/opt/jdk1.8.0_201/bin:/opt/jdk1.8.0_201/jre/bin'
 				sh 'echo ANDROID_HOME: $ANDROID_HOME'
 				sh 'echo JRE_HOME: $JRE_HOME'
