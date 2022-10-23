@@ -1,3 +1,4 @@
+//https://medium.com/appgambit/build-android-application-with-jenkins-pipeline-9e2f6667bae1
 agent {label "linux && android"}
 node {
 
@@ -10,11 +11,11 @@ node {
         }
       
         stage('Dependencies') {
-		/*
+		/*   
                 sh 'sudo npm install -g react-native-cli'
                 sh 'npm install'
                 sh 'react-native link'
-                sh 'export JAVA_HOME=/opt/jdk1.8.0_201'
+                sh 'export JAVA_HOME=/opt/jdk1.8.0_201'  //does not work to change JAVA_HOME and JRE_HOME here, need to set on the agent config
                 sh 'export JRE_HOME=/opt/jdk1.8.0_201/jre'
                 sh 'export PATH=$PATH:/opt/jdk1.8.0_201/bin:/opt/jdk1.8.0_201/jre/bin'
         */
@@ -78,7 +79,7 @@ node {
 			
 			
 			
-			withGradle {
+			//withGradle {
 				dir("integration/ServiceTestRuleSample") {
 					sh './gradlew testDebug connectedAndroidTest'
 				}
@@ -91,7 +92,7 @@ node {
 					}
 
 				}
-			}
+			//}
         }
 		
 		stage('test unsigned release ') {
@@ -100,9 +101,9 @@ node {
 			}
 		}
 		
-        //stage('Compile') {
-        //    archiveArtifacts artifacts: '**/*.apk', fingerprint: true, onlyIfSuccessful: true            
-        //}
+        stage('Compile') { //can display download link on build page
+            archiveArtifacts artifacts: '**/*.apk', fingerprint: true, onlyIfSuccessful: true            
+        }
 	} catch (caughtError) { 
 		
 		err = caughtError
