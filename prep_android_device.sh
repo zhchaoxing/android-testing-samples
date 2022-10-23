@@ -2,7 +2,7 @@
 
 # emulator -avd Android25 -wipe-data -no-snapshot &
 
-ANDROID_SERIAL=emulator-5556
+ANDROID_SERIAL=emulator-5558
 
 # wait for emulator to be up and fully booted, unlock screen
 
