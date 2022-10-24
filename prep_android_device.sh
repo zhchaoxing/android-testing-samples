@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # emulator -avd Android25 -wipe-data -no-snapshot &
-~/android_sdk/emulator/emulator -avd Android33 -noaudio -no-window -accel on -ports 5558,5559 &
+~/android_sdk/emulator/emulator -avd Android33 -noaudio -no-window -accel on -ports 5556,5557 &
 
-ANDROID_SERIAL=emulator-5558
+ANDROID_SERIAL=emulator-5556
 
 # wait for emulator to be up and fully booted, unlock screen
 
