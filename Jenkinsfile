@@ -43,14 +43,14 @@ node {
                 }
         }
 		*/
-        /*
-        stage('Clean Build') {
+        
+        stage('Clean Build') { //TODO: make individual folder
                 sh "pwd"
                 sh 'ls -al'
 				sh 'chmod +x ./clean_all.sh'
                 sh './clean_all.sh'
         }
-		*/
+		
         /*
         stage('Build release ') {
             parameters {
@@ -62,7 +62,7 @@ node {
         }
         */
 		
-		stage('Build unsigned release ') {
+		stage('Build and test unsigned release ') {
             /*
 			parameters {
                 credentials credentialType: 'org.jenkinsci.plugins.plaincredentials.impl.FileCredentialsImpl', defaultValue: '5d34f6f7-b641-4785-frd5-c93b67e71b6b', description: '', name: 'keystore', required: true
@@ -72,13 +72,10 @@ node {
                 sh './test_all.sh'
             }
 			*/
-			// sh './test_all.sh'
-			//sh 'integration/ServiceTestRuleSample ./gradlew integration/ServiceTestRuleSample testDebug connectedAndroidTest'
-			//sh 'runner/AndroidJunitRunnerSample ./gradlew runner/AndroidJunitRunnerSample testDebug connectedAndroidTest'
-			//sh 'runner/AndroidTestOrchestratorSample ./gradlew runner/AndroidTestOrchestratorSample testDebug connectedAndroidTest'
-			
-			
-			
+			sh 'chmod +x ./test_all.sh'
+			sh './test_all.sh'
+						
+			/*
 			//withGradle {
 				dir("integration/ServiceTestRuleSample") {
 					sh './gradlew testDebug connectedAndroidTest'
@@ -93,14 +90,15 @@ node {
 
 				}
 			//}
+			*/
         }
-		
+		/*
 		stage('test unsigned release ') {
 			dir("ui/espresso/AccessibilitySample") {
 				sh './gradlew testDebug connectedAndroidTest'
 			}
 		}
-		
+		*/
         stage('Compile') { //can display download link on build page
             archiveArtifacts artifacts: '**/*.apk', fingerprint: true, onlyIfSuccessful: true            
         }
