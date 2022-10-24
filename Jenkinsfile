@@ -104,6 +104,20 @@ node {
         stage('Compile') { //can display download link on build page
             archiveArtifacts artifacts: '**/*.apk', fingerprint: true, onlyIfSuccessful: true            
         }
+
+		stage('Kill Emulator') { //can display download link on build page
+            sh '''
+        # Disable exit on non 0
+        set +e
+
+        kill $(ps aux | grep '[e]mulator' | awk '{print $2}')
+
+        # Enable exit on non 0
+        set -e
+
+        '''         
+        }
+
 	} catch (caughtError) { 
 		
 		err = caughtError

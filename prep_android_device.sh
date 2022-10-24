@@ -1,7 +1,18 @@
 #!/bin/bash
 
+ # Disable exit on non 0
+$ANDROID_HOME/platform-tools/adb kill-server
+set +e
+
+kill $(ps aux | grep '[e]mulator' | awk '{print $2}')
+
+# Enable exit on non 0
+set -e
+
+sleep 20s # TODO: will optimize later
+
 # emulator -avd Android25 -wipe-data -no-snapshot &
-~/android_sdk/emulator/emulator -avd Android33 -noaudio -no-window -accel on -ports 5556,5557 &
+$ANDROID_HOME/emulator/emulator -avd Android33 -noaudio -no-window -accel on -ports 5556,5557 &
 
 ANDROID_SERIAL=emulator-5556
 
